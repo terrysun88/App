@@ -37,8 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp',
+    'webpack_loader',
 ]
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'js/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,7 +62,7 @@ ROOT_URLCONF = 'webapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'webapp/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +86,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_db',
         'USER': 'root',
-        'PASSWORD': 'root',
     }
 }
 
@@ -120,4 +126,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_ROOT = ''
+
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = ( os.path.join('static'), )

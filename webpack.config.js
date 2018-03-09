@@ -2,14 +2,18 @@ var path = require("path");
 var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
 
+var BUILD_DIR = path.resolve(__dirname, 'Web/static/js/');
+
 module.exports = {
   context: __dirname,
 
-  entry: './Web/myapp/static/js/index', 
+  entry: {
+    "home": './Web/static/jsx/home.jsx'
+  }, 
 
   output: {
-      path: path.resolve('./Web/myapp/static/bundles/'),
-      filename: "[name]-[hash].js",
+      path: BUILD_DIR,
+      filename: "[name].js",
   },
 
   plugins: [
